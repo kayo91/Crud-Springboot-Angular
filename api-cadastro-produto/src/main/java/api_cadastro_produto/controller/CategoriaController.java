@@ -18,7 +18,7 @@ import api_cadastro_produto.entities.Categoria;
 import api_cadastro_produto.service.CategoriaService;
 
 @RestController
-@RequestMapping(value = "/categoria")
+@RequestMapping(value = "/categorias")
 @CrossOrigin(origins = "*") // para permitir requisições do Angular
 public class CategoriaController {
 
@@ -34,7 +34,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Categoria> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<Categoria> buscarPorId(@PathVariable("id") Long id) {
         return categoriaService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -47,14 +47,14 @@ public class CategoriaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Categoria> atualizar(@PathVariable Long id, @RequestBody CategoriaDTO dto) {
+    public ResponseEntity<Categoria> atualizar(@PathVariable("id") Long id, @RequestBody CategoriaDTO dto) {
         return categoriaService.atualizar(id, dto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    public ResponseEntity<Void> deletar(@PathVariable("id") Long id) {
         return categoriaService.deletar(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 	

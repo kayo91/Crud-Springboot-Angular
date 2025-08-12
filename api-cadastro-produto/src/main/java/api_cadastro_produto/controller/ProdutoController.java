@@ -34,7 +34,7 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<Produto> buscarPorId(@PathVariable("id") Long id) {
         return produtoService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -48,14 +48,14 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Produto> atualizar(@PathVariable Long id, @RequestBody ProdutoDTO dto) {
+    public ResponseEntity<Produto> atualizar(@PathVariable("id") Long id, @RequestBody ProdutoDTO dto) {
         return produtoService.atualizar(id, dto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.badRequest().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    public ResponseEntity<Void> deletar(@PathVariable("id") Long id) {
         return produtoService.deletar(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 
