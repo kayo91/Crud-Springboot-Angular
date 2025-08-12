@@ -2,6 +2,7 @@ package api_cadastro_produto.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -74,18 +75,18 @@ public class Produto implements Serializable{
 		this.categoria = categoria;
 	}
 	
-	 @Override
-	    public boolean equals(Object o) {
-	        if (this == o) return true;
-	        if (o == null || getClass() != o.getClass()) return false;
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-	        Produto produto = (Produto) o;
-	        return id != null && id.equals(produto.id);
-	    }
+        Produto produto = (Produto) o;
+        return Objects.equals(id, produto.id);
+    }
 
-	    @Override
-	    public int hashCode() {
-	        return 31;
-	    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
 }
